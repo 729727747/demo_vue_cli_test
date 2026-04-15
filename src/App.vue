@@ -1,8 +1,11 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <StudentTest />
+  <div >
+    <h1 v-text="msg" ref="title"></h1>
+    <h1 v-text="msg" ref="title2"></h1>
     <SchoolTest />
+    <StudentTest />
+    <StudentTest />
+    <button @click="changeMsg">点我弹出msg</button>
   </div>
 </template>
 
@@ -10,13 +13,22 @@
 import StudentTest from './components/StudentTest.vue'
 import SchoolTest from './components/SchoolTest.vue'
 
-
-
 export default {
   name: 'App',
+  data(){
+    return{
+      msg:'hello vue cli',
+    }
+  },
   components: {
     StudentTest,
     SchoolTest, 
+  },
+  methods:{
+    changeMsg(){
+      console.log(this.$refs.title.innerText)
+      console.log(this.$refs.title2.innerText)
+    }
   }
 }
 </script>
