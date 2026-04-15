@@ -1,11 +1,9 @@
 <template>
   <div >
     <h1 v-text="msg" ref="title"></h1>
-    <h1 v-text="msg" ref="title2"></h1>
     <SchoolTest />
-    <StudentTest />
-    <StudentTest />
-    <button @click="changeMsg">点我弹出msg</button>
+    <StudentTest studentName="张三" studentAddress="武汉市霞飞路38号" :studentAge="18" />
+    <!-- <button @click="changeMsg">点我弹出msg</button> -->
   </div>
 </template>
 
@@ -22,14 +20,14 @@ export default {
   },
   components: {
     StudentTest,
-    SchoolTest, 
+    SchoolTest
   },
-  methods:{
-    changeMsg(){
-      console.log(this.$refs.title.innerText)
-      console.log(this.$refs.title2.innerText)
-    }
-  }
+  // methods:{
+  //   changeMsg(){
+  //     console.log(this.$refs.title.innerText)
+  //     console.log(this.$refs.title2.innerText)
+  //   }
+  // }
 }
 </script>
 
