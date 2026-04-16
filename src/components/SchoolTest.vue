@@ -25,7 +25,7 @@
 
 <style scoped>
     .school{
-        color:red;
+        background-color: rgb(255, 0, 81);
     }
 </style>
 

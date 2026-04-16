@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import StudentTest from './components/StudentTest.vue'
 import SchoolTest from './components/SchoolTest.vue'
+import StudentTest from './components/StudentTest.vue'
 
 export default {
   name: 'App',

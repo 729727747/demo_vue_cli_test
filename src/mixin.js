@@ -3,5 +3,8 @@ export const hunhe = {
         showName(){
             alert(this.studentName)
         }
+    },
+    mounted(){
+        console.log(this.studentName)
     }
 }
