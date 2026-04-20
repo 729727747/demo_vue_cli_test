@@ -38,18 +38,19 @@ export default {
   name: 'App',
   data(){
     return{
-     todos:[
-            {
-                id:1,
-                title:'学习vue',
-                completed:true
-            },
-            {
-                id:2,
-                title:'学习react',
-                completed:false
-            }
-        ]
+    //  todos:[
+    //         {
+    //             id:1,
+    //             title:'学习vue',
+    //             completed:true
+    //         },
+    //         {
+    //             id:2,
+    //             title:'学习react',
+    //             completed:false
+    //         }
+    //     ]
+    todos:JSON.parse(localStorage.getItem('todos')) || []
     }
   },
   methods:{
@@ -70,6 +71,14 @@ export default {
         this.todos.forEach(item => {
             item.completed = checked
         })
+    }
+  },
+  watch:{
+    todos:{
+      deep:true,
+      handler(value){
+        localStorage.setItem('todos',JSON.stringify(value))
+      }
     }
   },
   components: {

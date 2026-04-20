@@ -5,8 +5,8 @@
 </template>
 
 <script>
-    //导入随机字符串生成
-
+    //随机字符串生成
+    import { nanoid } from 'nanoid'
     export default {
         name:'HeaderComponent',
         data(){
@@ -19,7 +19,7 @@
                 if(!this.inputContent){
                     return
                 }
-                const todoObj = {id:0,title:this.inputContent,completed:false}
+                const todoObj = {id:nanoid(),title:this.inputContent,completed:false}
                 this.addTodo(todoObj)
                 this.inputContent = ''
             }
