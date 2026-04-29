@@ -20,11 +20,11 @@
                     return
                 }
                 const todoObj = {id:nanoid(),title:this.inputContent,completed:false}
-                this.addTodo(todoObj)
+                this.$emit('addTodo',todoObj)
                 this.inputContent = ''
             }
         },
-        props:['addTodo']
+        // props:['addTodo']
     }
 </script>
 

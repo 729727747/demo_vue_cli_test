@@ -6,13 +6,13 @@
     <h2>{{msg|upperCase}}</h2> 
     <h2>{{msg}}</h2> 
     <input type="text" v-focus>光标自动聚焦
-    <!-- <button @click="updateAge">尝试修改学生年龄</button> -->
-    <!-- <button @click="showName">点我弹出名称</button> -->
+    <button @click="updateAge">尝试修改学生年龄</button>
+    <button @click="showName">点我弹出名称</button> 
    </div>
 </template>
 
 <script>
-    // import { hunhe } from '../mixin.js'
+    import { hunhe } from '../mixin.js'
 
     export default {
         name:'StudentTest',
@@ -41,8 +41,7 @@
                 type:Number
             }
         },
-        // props:['studentName','studentAddress','studentAge']
-        // mixins:[hunhe]
+        mixins:[hunhe]// 混入mixin.js中的方法
         
     }
 </script>

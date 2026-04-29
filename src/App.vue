@@ -3,13 +3,15 @@
     <!-- <h1 v-text="msg" ref="title"></h1> -->
 
     <!--demo1  start-->
-    <!-- <SchoolTest />
-    <StudentTest studentName="张三" studentAddress="武汉市霞飞路38号" :studentAge="18" /> -->
-    <!-- <button @click="changeMsg">点我弹出msg</button> -->
+    <SchoolTest @getChildSchoolName="getChildSchoolName" />
+    <SchoolTest ref="schoolTestRef"  />
+    <StudentTest studentName="张三" studentAddress="武汉市霞飞路38号" :studentAge="18" /> 
+    <button @click="changeMsg">点我弹出msg</button> 
      <!--demo1  end-->
 
 
-    <HeaderComponent :addTodo="addTodo" />
+    <!-- <HeaderComponent :addTodo="addTodo" /> -->
+    <HeaderComponent @addTodo="addTodo" />
     <ListComponent  :todos="todos" 
      :checkboxChange="checkboxChange"
      :deleteTodo="deleteTodo"
@@ -26,8 +28,8 @@
 <script>
 
 // demo1  start
-// import SchoolTest from './components/SchoolTest.vue'
-// import StudentTest from './components/StudentTest.vue'
+import SchoolTest from './components/SchoolTest.vue'
+import StudentTest from './components/StudentTest.vue'
 // demo1  end
 
 import HeaderComponent from './components/demo/Header.vue'
@@ -38,6 +40,7 @@ export default {
   name: 'App',
   data(){
     return{
+      getSchoolName:'',
     //  todos:[
     //         {
     //             id:1,
@@ -71,7 +74,18 @@ export default {
         this.todos.forEach(item => {
             item.completed = checked
         })
+    },
+     changeMsg(){
+      console.log(this.$refs.title)
+      console.log(this.$refs.title2)
+    },
+    getChildSchoolName(schoolName){
+      this.getSchoolName = schoolName
+      alert(this.getSchoolName)
     }
+  },
+  mounted(){
+    this.$refs.schoolTestRef.$on('getChildSchoolName',this.getChildSchoolName)
   },
   watch:{
     todos:{
@@ -84,21 +98,10 @@ export default {
   components: {
     HeaderComponent,
     ListComponent,
-    FooterComponent
-
-
-
-    //demo1  start
-    // StudentTest,
-    // SchoolTest
-    //demo1  end
-  },
-  // methods:{
-  //   changeMsg(){
-  //     console.log(this.$refs.title.innerText)
-  //     console.log(this.$refs.title2.innerText)
-  //   }
-  // }
+    FooterComponent,
+    StudentTest,
+    SchoolTest
+  }
 }
 </script>
 

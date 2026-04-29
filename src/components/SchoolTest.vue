@@ -3,6 +3,7 @@
     <h2>学校名称:{{schoolName}}</h2>
     <h2>学校地址:{{schoolAddress}}</h2>
     <button @click="changeSchoolName">点我弹出学校名称</button>
+    <button @click="sendSchoolNameToParent">子组件传递学校名称给父组件</button> 
    </div>
 </template>
 
@@ -18,6 +19,9 @@
         methods:{
             changeSchoolName(){
                 alert(this.schoolName)
+            },
+            sendSchoolNameToParent(){
+                this.$emit('getChildSchoolName',this.schoolName)
             }
         }
     }
