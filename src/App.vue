@@ -2,24 +2,27 @@
   <div >
     <!-- <h1 v-text="msg" ref="title"></h1> -->
 
-    <!--demo1  start-->
-    <SchoolTest @getChildSchoolName="getChildSchoolName" />
-    <SchoolTest ref="schoolTestRef"  />
-    <StudentTest studentName="张三" studentAddress="武汉市霞飞路38号" :studentAge="18" /> 
-    <button @click="changeMsg">点我弹出msg</button> 
-     <!--demo1  end-->
+    <div class="demo1">
+      <SchoolTest @getChildSchoolName="getChildSchoolName" />
+      <SchoolTest ref="schoolTestRef"  />
+      <StudentTest studentName="张三" studentAddress="武汉市霞飞路38号" :studentAge="18" /> 
+      <button @click="changeMsg">点我弹出msg</button>
+    </div> 
 
+    <div class="demo2">
+      <!-- <HeaderComponent :addTodo="addTodo" /> -->
+      <HeaderComponent @addTodo="addTodo" />
+      <ListComponent  :todos="todos" 
+      :checkboxChange="checkboxChange"
+      :deleteTodo="deleteTodo"
+      />
+      <FooterComponent :todos="todos"
+      />
+    </div> 
 
-    <!-- <HeaderComponent :addTodo="addTodo" /> -->
-    <HeaderComponent @addTodo="addTodo" />
-    <ListComponent  :todos="todos" 
-     :checkboxChange="checkboxChange"
-     :deleteTodo="deleteTodo"
-     />
-    <FooterComponent :todos="todos"
-     />
-
-
+    <div class="demo3">
+      <button @click="getUserInfo">后端获取用户信息</button>
+    </div> 
 
   </div>
 </template>
@@ -29,6 +32,7 @@
 // demo1  start
 import SchoolTest from './components/SchoolTest.vue'
 import StudentTest from './components/StudentTest.vue'
+import axios from 'axios'
 // demo1  end
 
 import HeaderComponent from './components/demo/Header.vue'
@@ -82,7 +86,18 @@ export default {
     getChildSchoolName(schoolName){
       this.getSchoolName = schoolName
       alert(this.getSchoolName)
+    },
+
+
+    getUserInfo(){
+      axios.get('http://localhost:8080/jeecg-boot/sys/user/queryUserAndDeptByName?userName=yanju').then(res => {
+        alert(JSON.stringify(res.data.result.userId)) 
+      })
     }
+
+
+
+
   },
   mounted(){
     this.$refs.schoolTestRef.$on('getChildSchoolName',this.getChildSchoolName)
@@ -121,4 +136,16 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+
+.demo1{
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: rgb(25, 0, 255);
+}
+.demo2{
+  padding: 20px;
+  background-color: rgb(0, 255, 170);
+}
+
+
 </style>
