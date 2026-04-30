@@ -20,11 +20,12 @@
             return{
             }
         },
-        props:['todos','changeAll'],
+        props:['todos'],
         methods:{
             changeAllCheck(e){
                 console.log(e)
-                this.changeAll(e.target.checked)
+                this.$bus.$emit('changeAll',e.target.checked)
+                // this.changeAll(e.target.checked)
             }
         },computed:{
             completedTodo(){

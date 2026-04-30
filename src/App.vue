@@ -17,7 +17,6 @@
      :deleteTodo="deleteTodo"
      />
     <FooterComponent :todos="todos"
-     :changeAll="changeAll"
      />
 
 
@@ -70,11 +69,12 @@ export default {
     deleteTodo(id){
        this.todos = this.todos.filter(item=>item.id!==id)
     },
-    changeAll(checked){
-        this.todos.forEach(item => {
-            item.completed = checked
-        })
-    },
+    // changeAll(checked){
+    //     this.todos.forEach(item => {
+    //         item.completed = checked
+    //     })
+    // },
+
      changeMsg(){
       console.log(this.$refs.title)
       console.log(this.$refs.title2)
@@ -94,6 +94,13 @@ export default {
         localStorage.setItem('todos',JSON.stringify(value))
       }
     }
+  },
+  created(){
+    this.$bus.$on('changeAll',(checked) => {
+      this.todos.forEach(item => {
+        item.completed = checked
+      })
+    })
   },
   components: {
     HeaderComponent,
