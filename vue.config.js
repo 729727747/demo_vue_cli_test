@@ -3,11 +3,15 @@ module.exports = defineConfig({
   transpileDependencies: true,
     devServer: {
     // proxy: 'http://localhost:8082'
+    port: 8089,
     proxy: {
-      '/jeecg-boot': {
+      '/api': {
         target: 'http://localhost:8082',
         ws: true,
-        changeOrigin: true
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api': ''
+        }
       }
     }
   }

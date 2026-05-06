@@ -90,7 +90,7 @@ export default {
 
 
     getUserInfo(){
-      axios.get('/jeecg-boot/sys/user/queryUserAndDeptByName?userName=yanju').then(res => {
+      axios.get('/api/jeecg-boot/sys/user/queryUserAndDeptByName?userName=yanju').then(res => {
       alert(JSON.stringify(res.data.result.userId)) 
       // axios.get('http://localhost:8080/test.txt').then(res => {
       //   alert(res.data)
